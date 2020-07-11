@@ -1,23 +1,23 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GuildSidebarComponent } from './guild-sidebar.component';
+import { BotSidebarComponent } from './bot-sidebar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from '../../app-routing.module';
 
 describe('GuildSidebarComponent', () => {
-  let component: GuildSidebarComponent;
-  let fixture: ComponentFixture<GuildSidebarComponent>;
+  let component: BotSidebarComponent;
+  let fixture: ComponentFixture<BotSidebarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GuildSidebarComponent ],
+      declarations: [ BotSidebarComponent ],
       imports: [ HttpClientModule, AppRoutingModule ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GuildSidebarComponent);
+    fixture = TestBed.createComponent(BotSidebarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,4 +1,4 @@
-<bot-sidebar [waitFor]="savedbot && form">
+<bot-sidebar [waitFor]="savedBot && form">
     <div *ngIf="form" class="container">
         <form #f="ngForm" [formGroup]="form">
             <div class="d-flex justify-content-between">
@@ -23,13 +23,9 @@
                             <textarea formControlName="message" matInput>{{ getEvent(event)?.message }}</textarea>
                         </mat-form-field>
                         <mat-form-field appearance="outline">
-                            <mat-label>Channel</mat-label>
-                            <mat-select formControlName="channel">
-                                <mat-option *ngFor="let channel of textChannels" 
-                                    [value]="channel.id">#{{ channel.name }}
-                                    <span class="float-right text-muted">[{{ getChannel(channel.parentID)?.name || 'N/A' }}]</span>
-                                </mat-option>
-                            </mat-select>
+                            <mat-label>Channel Name</mat-label>
+                            <input matInput
+                                formControlName="channelName" type="text">
                         </mat-form-field>
                     </div>
                 </div>

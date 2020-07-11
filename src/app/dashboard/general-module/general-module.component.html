@@ -1,4 +1,4 @@
-<bot-sidebar [waitFor]="savedbot && general">
+<bot-sidebar [waitFor]="savedBot && general">
     <div *ngIf="form" class="container">
         <form #f="ngForm" [formGroup]="form">
             <div class="d-flex justify-content-between">
@@ -17,25 +17,34 @@
                 </div>
                 <div class="col-lg-4 col-sm-6">
                     <mat-form-field appearance="outline">
-                        <mat-label>Ignored Channels</mat-label>
-                        <mat-select multiple
-                            formControlName="ignoredChannels">
-                            <mat-option *ngFor="let channel of textChannels" 
-                                [value]="channel.id">#{{ channel.name }}
-                                <span class="float-right text-muted">[{{ getChannel(channel.parentID)?.name || 'N/A' }}]</span>
-                            </mat-option>
-                        </mat-select>
+                        <mat-label>Ignored Channel Names</mat-label>
+                        <mat-chip-list #ignoredChannelNames aria-label="Name selection">
+                            <mat-chip *ngFor="let name of savedBot.autoMod.ignoredChannelNames" selectable
+                                    removable (removed)="remove(name, savedBot.autoMod.ignoredChannelNames)">
+                                {{ name }}
+                                <mat-icon matChipRemove>x</mat-icon>
+                            </mat-chip>
+                            <input placeholder="New name..."
+                                    [matChipInputFor]="ignoredChannelNames"
+                                    matChipInputAddOnBlur
+                                    (matChipInputTokenEnd)="add($event, savedBot.autoMod.ignoredChannelNames)">
+                        </mat-chip-list>
                     </mat-form-field>
                 </div>
                 <div class="col-lg-4 col-sm-6">
                     <mat-form-field appearance="outline">
-                        <mat-label>Auto Roles</mat-label>
-                        <mat-select multiple
-                            formControlName="autoRoles">
-                            <mat-option *ngFor="let role of roles" 
-                                [value]="role.id"
-                                [style.color]="'#' + role.color?.toString(16)">@{{ role.name }}</mat-option>
-                        </mat-select>
+                        <mat-label>Auto Role Names</mat-label>
+                        <mat-chip-list #autoRoleNames aria-label="Name selection">
+                            <mat-chip *ngFor="let name of savedBot.autoMod.autoRoleNames" selectable
+                                    removable (removed)="remove(name, savedBot.autoMod.autoRoleNames)">
+                                {{ name }}
+                                <mat-icon matChipRemove>x</mat-icon>
+                            </mat-chip>
+                            <input placeholder="New name..."
+                                    [matChipInputFor]="autoRoleNames"
+                                    matChipInputAddOnBlur
+                                    (matChipInputTokenEnd)="add($event, savedBot.autoMod.autoRoleNames)">
+                        </mat-chip-list>
                     </mat-form-field>
                 </div>
             </div>

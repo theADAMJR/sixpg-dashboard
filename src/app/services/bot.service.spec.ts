@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GuildService } from './guild.service';
+import { BotService } from './bot.service';
 import { HttpClientModule } from '@angular/common/http';
 
 describe('GuildService', () => {
-  let service: GuildService;
+  let service: BotService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -12,7 +12,7 @@ describe('GuildService', () => {
         HttpClientModule
       ]
     });
-    service = TestBed.inject(GuildService);
+    service = TestBed.inject(BotService);
   });
 
   it('should be created', () => {

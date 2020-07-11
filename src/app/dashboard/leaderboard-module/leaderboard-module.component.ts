@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute } from '@angular/router';
-import { GuildService } from '../../services/guild.service';
+import { BotService } from '../../services/bot.service';
 
 @Component({
   selector: 'app-leaderboard-module',
@@ -13,13 +12,14 @@ export class LeaderboardModuleComponent implements OnInit {
   guild: any = {};
 
   constructor(
-    private guildService: GuildService,
+    private guildService: BotService,
     private route: ActivatedRoute) {}
 
   async ngOnInit() {
-    const guildId = this.route.snapshot.paramMap.get('id');
+    const botId = this.route.snapshot.paramMap.get('id');
+    const guildId = this.route.snapshot.paramMap.get('guildId');
 
-    this.members = await this.guildService.getMembers(guildId);
-    this.guild = await this.guildService.getPublicGuild(guildId);
+    this.members = await this.guildService.getMembers(botId, guildId);
+    this.guild = await this.guildService.getPublicBot(botId);
   }
 }

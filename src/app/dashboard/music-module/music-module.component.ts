@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ModuleConfig } from 'src/app/module-config';
-import { GuildService } from 'src/app/services/guild.service';
+import { BotService } from 'src/app/services/bot.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -19,11 +19,11 @@ export class MusicModuleComponent extends ModuleConfig implements OnInit {
   get focused() { return document.activeElement.id === 'search'; }
   
   constructor(
-    public guildService: GuildService,
+    public botService: BotService,
     route: ActivatedRoute,
     saveChanges: MatSnackBar,
     public service: MusicService) {
-    super(guildService, route, saveChanges);
+    super(botService, route, saveChanges);
   }
 
   async ngOnInit() {

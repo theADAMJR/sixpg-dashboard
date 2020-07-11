@@ -17,7 +17,7 @@
                         {{ changeCount - i }}
                     </td>
                     <td class="user">
-                        <member-username [member]="getMember(change.by)"
+                        <member-username [member]="userService.user"
                             [withAvatar]="false"></member-username>
                     </td>
                     <td>{{ change.at | miniDate }}</td>

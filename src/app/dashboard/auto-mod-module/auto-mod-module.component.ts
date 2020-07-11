@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModuleConfig } from '../../module-config';
 import { FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
-import { GuildService } from '../../services/guild.service';
+import { BotService } from '../../services/bot.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -15,7 +15,7 @@ export class AutoModModuleComponent extends ModuleConfig implements OnInit {
   moduleName = 'autoMod';
 
   constructor(
-    guildService: GuildService,
+    guildService: BotService,
     route: ActivatedRoute,
     saveChanges: MatSnackBar) {
     super(guildService, route, saveChanges);
@@ -32,7 +32,7 @@ export class AutoModModuleComponent extends ModuleConfig implements OnInit {
       filters: new FormControl(autoMod.filters ?? []),
       autoDeleteMessages: new FormControl(autoMod.autoDeleteMessages ?? true),
       autoWarnUsers: new FormControl(autoMod.autoWarnUsers ?? false),
-      ignoredRoles: new FormControl(autoMod.ignoredRoles ?? []),
+      ignoredRoleNames: new FormControl(autoMod.ignoredRoles ?? []),
       filterThreshold: new FormControl(autoMod.filterThreshold ?? 5,
         [ Validators.min(1), Validators.max(20) ]),
     });

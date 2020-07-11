@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ModuleConfig } from '../../module-config';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { GuildService } from '../../services/guild.service';
-import { SaveChangesComponent } from '../save-changes/save-changes.component';
+import { BotService } from '../../services/bot.service';
 
 @Component({
   selector: 'app-settings-module',
@@ -16,7 +14,7 @@ export class SettingsModuleComponent extends ModuleConfig implements OnInit {
   moduleName = 'settings';
 
   constructor(
-    guildService: GuildService,
+    guildService: BotService,
     route: ActivatedRoute,
     saveChanges: MatSnackBar) {
     super(guildService, route, saveChanges);

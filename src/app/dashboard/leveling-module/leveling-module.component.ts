@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { GuildService } from '../../services/guild.service';
+import { BotService } from '../../services/bot.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ModuleConfig } from '../../module-config';
 import { slideUpDown } from './leveling-module.animations';
@@ -19,7 +19,7 @@ export class LevelingModuleComponent extends ModuleConfig implements OnInit {
   get levelRolesFormArray() { return this.form.get('levelRoles') as FormArray; }
 
   constructor(
-    guildService: GuildService,
+    guildService: BotService,
     route: ActivatedRoute,
     saveChanges: MatSnackBar) {
     super(guildService, route, saveChanges);

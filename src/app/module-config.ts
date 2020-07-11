@@ -2,7 +2,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SaveChangesComponent } from './dashboard/save-changes/save-changes.component';
-import { GuildService } from './services/guild.service';
+import { BotService } from './services/bot.service';
 import {  OnDestroy } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { Subscription } from 'rxjs';
@@ -26,7 +26,7 @@ export abstract class ModuleConfig implements OnDestroy {
     private valueChanges$: Subscription;  
   
     constructor(
-        protected guildService: GuildService,
+        protected botService: BotService,
         protected route: ActivatedRoute,
         public saveChanges: MatSnackBar) {}
 
@@ -36,7 +36,7 @@ export abstract class ModuleConfig implements OnDestroy {
     async init() {
         const data = this.route.snapshot.data;
         
-        this.guild = this.guildService.guilds.find(g => g.id === this.guildId);
+        this.guild = this.botService.bots.find(g => g.id === this.guildId);
 
         this.roles = data.roles;
         this.channels = data.channels;
@@ -91,7 +91,7 @@ export abstract class ModuleConfig implements OnDestroy {
         console.log(this.form.value);
         try {
             if (this.form.valid)
-                await this.guildService.saveGuild(this.guildId, this.moduleName, this.form.value);
+                await this.botService.saveBot(this.guildId, this.moduleName, this.form.value);
         } catch { alert('An error occurred when submitting the form - check console'); }
     }
 

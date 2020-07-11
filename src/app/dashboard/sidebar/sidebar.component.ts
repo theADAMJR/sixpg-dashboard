@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
 import { UserService } from '../../services/user.service';
-import { GuildService } from '../../services/guild.service';
+import { BotService } from '../../services/bot.service';
 import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
@@ -12,16 +11,16 @@ import { MatDrawer } from '@angular/material/sidenav';
 export class SidebarComponent implements OnInit {
   @ViewChild('drawer') drawer: MatDrawer;
 
-  get guilds() { return this.guildService.guilds || []; }
+  get guilds() { return this.botService.bots || []; }
   get user() { return this.userService.user || {}; }
 
   constructor(
-    private guildService: GuildService,
+    private botService: BotService,
     private userService: UserService) {}
 
   async ngOnInit() {
-    if (this.guildService.guilds.length <= 0)
-      await this.guildService.updateGuilds();
+    if (this.botService.bots.length <= 0)
+      await this.botService.updateBots();
   }
 
   toggle(el: HTMLElement) {

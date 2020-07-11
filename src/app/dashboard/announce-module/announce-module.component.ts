@@ -3,7 +3,7 @@ import { ModuleConfig } from '../../module-config';
 import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { GuildService } from '../../services/guild.service';
+import { BotService } from '../../services/bot.service';
 
 @Component({
   selector: 'app-announce-module',
@@ -19,10 +19,10 @@ export class AnnounceModuleComponent extends ModuleConfig implements OnInit {
   eventConfigs: AnnounceEvent[] = [];
 
   constructor(
-    guildService: GuildService,
+    botService: BotService,
     route: ActivatedRoute,
     saveChanges: MatSnackBar) {
-    super(guildService, route, saveChanges);
+    super(botService, route, saveChanges);
   }
 
   async ngOnInit() {
@@ -32,17 +32,16 @@ export class AnnounceModuleComponent extends ModuleConfig implements OnInit {
   }
 
   buildForm({ announce }: any) {
-    const formGroup = new FormGroup({
-      events: new FormArray([])
-    });
+    const formGroup = new FormGroup({ events: new FormArray([]) });
+    
     for (let i = 0; i < this.events.length; i++) {
       const event = this.events[i];
       const config = announce.events.find(e => e.event === event); 
 
       (formGroup.get('events') as FormArray).push(new FormGroup({
         event: new FormControl(event),
-        enabled: new FormControl(Boolean(config?.channel && config?.message) ?? false),
-        channel: new FormControl(config?.channel ?? ''),
+        enabled: new FormControl(Boolean(config?.channelName && config?.message) ?? false),
+        channelName: new FormControl(config?.channelName ?? ''),
         message: new FormControl(config?.message ?? `\`${EventType[event]}\` was triggered in **[GUILD]**!`, Validators.maxLength(512))
       }));     
     }
@@ -57,7 +56,7 @@ export class AnnounceModuleComponent extends ModuleConfig implements OnInit {
     const value = this.form.value;
     this.filterFormEvents(value);
     
-    await this.guildService.saveGuild(this.guildId, this.moduleName, value);
+    await this.botService.saveBot(this.guildId, this.moduleName, value);
   }
 
   private filterFormEvents(value: any) {
@@ -75,6 +74,6 @@ export enum EventType { MemberJoin, MemberLeave, MessageDeleted }
 
 export interface AnnounceEvent {
   event: EventType;
-  channel: string;
+  channelName: string;
   message: string;
 }

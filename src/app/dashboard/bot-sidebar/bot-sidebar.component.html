@@ -12,35 +12,35 @@
             <h4 [routerLink]="['/servers/' + id]">{{ bot.name }}</h4>
         </div>
             <div class="category">Config</div>
-            <div *ngIf="bot && savedbot"
+            <div *ngIf="bot && savedBot"
                 class="navbar-nav">
                 <a [routerLink]="['/servers/' + id + '/announce']" routerLinkActive="active"
-                    [class.interactive-muted]="!savedbot.announce.enabled"
+                    [class.interactive-muted]="!savedBot.announce.enabled"
                     class="nav-item nav-link">                    
                     <i class="text-muted fas fa-bullhorn"></i> Announce</a>
 
                 <a [routerLink]="['/servers/' + id + '/auto-mod']" routerLinkActive="active"
-                    [class.interactive-muted]="!savedbot.autoMod.enabled"
+                    [class.interactive-muted]="!savedBot.autoMod.enabled"
                     class="nav-item nav-link">
                     <i class="text-muted fas fa-gavel"></i> Auto-mod</a>
 
                 <a [routerLink]="['/servers/' + id + '/commands']" routerLinkActive="active"
-                    [class.interactive-muted]="!savedbot.commands.enabled"
+                    [class.interactive-muted]="!savedBot.commands.enabled"
                     class="nav-item nav-link">
                     <i class="text-muted fas fa-code"></i> Commands</a>
 
                 <a [routerLink]="['/servers/' + id + '/general']" routerLinkActive="active"
-                    [class.interactive-muted]="!savedbot.general.enabled"
+                    [class.interactive-muted]="!savedBot.general.enabled"
                     class="nav-item nav-link">
                     <i class="text-muted fas fa-terminal"></i> General</a>
 
                 <a [routerLink]="['/servers/' + id + '/leveling']" routerLinkActive="active"
-                    [class.interactive-muted]="!savedbot.leveling.enabled"
+                    [class.interactive-muted]="!savedBot.leveling.enabled"
                     class="nav-item nav-link">
                     <i class="text-muted fas fa-star"></i> Leveling</a>
 
                 <a [routerLink]="['/servers/' + id + '/music']" routerLinkActive="active"
-                    [class.interactive-muted]="!savedbot.music.enabled"
+                    [class.interactive-muted]="!savedBot.music.enabled"
                     class="nav-item nav-link">
                     <i class="text-muted fas fa-music"></i> Music</a>
             </div>

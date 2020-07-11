@@ -4,7 +4,7 @@ import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ModuleConfig } from '../../module-config';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { GuildService } from '../../services/guild.service';
+import { BotService } from '../../services/bot.service';
 
 @Component({
   selector: 'app-commands-module',
@@ -20,7 +20,7 @@ export class CommandsModuleComponent extends ModuleConfig implements OnInit {
   get commandsFormArray() { return this.form.get('configs') as FormArray; }
 
   constructor(
-    guildService: GuildService,
+    guildService: BotService,
     route: ActivatedRoute,
     saveChanges: MatSnackBar,
     private service: CommandsService) {

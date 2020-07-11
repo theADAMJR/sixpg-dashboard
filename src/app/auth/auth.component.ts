@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { GuildService } from '../services/guild.service';
+import { BotService } from '../services/bot.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class AuthComponent implements OnInit {
     private auth: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    private guildService: GuildService,
+    private guildService: BotService,
     private userService: UserService) {}
 
   async ngOnInit() {
@@ -25,7 +25,7 @@ export class AuthComponent implements OnInit {
       localStorage.setItem('key', key);
     
       await this.userService.updateUser();
-      await this.guildService.updateGuilds();
+      await this.guildService.updateBots();
       
       this.router.navigate(['/dashboard']);
     } catch {

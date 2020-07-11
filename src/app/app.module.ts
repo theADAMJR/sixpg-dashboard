@@ -28,7 +28,7 @@ import { MusicModuleComponent } from './dashboard/music-module/music-module.comp
 import { LogModuleComponent } from './dashboard/log-module/log-module.component';
 import { SettingsModuleComponent } from './dashboard/settings-module/settings-module.component';
 import { LevelingModuleComponent } from './dashboard/leveling-module/leveling-module.component';
-import { GuildSidebarComponent } from './dashboard/guild-sidebar/guild-sidebar.component';
+import { BotSidebarComponent } from './dashboard/bot-sidebar/bot-sidebar.component';
 import { LeaderboardModuleComponent } from './dashboard/leaderboard-module/leaderboard-module.component';
 import { XPCardComponent } from './xp-card/xp-card.component';
 import { DashboardSidebarComponent } from './dashboard/dashboard-sidebar/dashboard-sidebar.component';
@@ -64,9 +64,7 @@ export class AlertErrorHandler implements ErrorHandler {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: error.message })
       });
-    } finally {
-      console.log(error);
-    }
+    } finally { console.log(error); }
   }
 }
 
@@ -93,7 +91,7 @@ export class AlertErrorHandler implements ErrorHandler {
     LogModuleComponent,
     SettingsModuleComponent,
     LevelingModuleComponent,
-    GuildSidebarComponent,
+    BotSidebarComponent,
     LeaderboardModuleComponent,
     XPCardComponent,
     CustomizeXPCardComponent,

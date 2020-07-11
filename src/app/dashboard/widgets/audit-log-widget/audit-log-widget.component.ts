@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { GuildService } from 'src/app/services/guild.service';
+import { BotService } from 'src/app/services/bot.service';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'audit-log-widget',
@@ -16,21 +17,16 @@ export class AuditLogWidgetComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private guildService: GuildService) {}
+    private guildService: BotService,
+    public userService: UserService) {}
 
   async ngOnInit() {
     this.route.paramMap.subscribe(async(val) => {
       const id = val.get('id');
-
-      this.members = await this.guildService.getMembers(id);
   
       const { changes } = await this.guildService.getSavedLog(id);
       this.changeCount = changes.length;
       this.changes = changes.splice(changes.length - this.rows, changes.length);
     });
-  }
-
-  getMember(id: string) {          
-    return this.members.find(m => m.id === id) || {};
   }
 }

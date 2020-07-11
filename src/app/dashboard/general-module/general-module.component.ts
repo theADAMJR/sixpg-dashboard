@@ -4,7 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ModuleConfig } from '../../module-config';
-import { GuildService } from '../../services/guild.service';
+import { BotService } from '../../services/bot.service';
 
 @Component({
   selector: 'app-general-module',
@@ -17,7 +17,7 @@ export class GeneralModuleComponent extends ModuleConfig implements OnInit {
   get general() { return this.savedGuild.general; }
 
   constructor(
-    guildService: GuildService,
+    guildService: BotService,
     route: ActivatedRoute,
     saveChanges: MatSnackBar) {
     super(guildService, route, saveChanges);
@@ -33,8 +33,8 @@ export class GeneralModuleComponent extends ModuleConfig implements OnInit {
         Validators.required, 
         Validators.maxLength(5) 
       ]),
-      ignoredChannels: new FormControl(general.ignoredChannels ?? []),
-      autoRoles: new FormControl(general.autoRoles ?? [])
+      ignoredChannelNames: new FormControl(general.ignoredChanneNamess ?? []),
+      autoRoleNames: new FormControl(general.autoRoleNames ?? [])
     });
     return formGroup;
   }

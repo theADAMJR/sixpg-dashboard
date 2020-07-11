@@ -20,10 +20,17 @@ export class UserService {
     return `${this.endpoint}/xp-card-preview?key=${this.key}`;
   }
 
-  constructor(private http: HttpClient) {}
-  
   private get key() {
     return localStorage.getItem('key');
+  }
+
+  constructor(private http: HttpClient) {}
+  
+  async init() {    
+    if (!this.user)
+      await this.updateUser();
+    if (!this.savedUser)
+      await this.updateSavedUser(); 
   }
 
   async updateUser() {

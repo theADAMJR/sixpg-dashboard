@@ -3,21 +3,16 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angul
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
-import { GuildService } from '../services/guild.service';
+import { BotService } from '../services/bot.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DashboardAuthGuard implements CanActivate {
-  constructor(
-    private userService: UserService,
-    private guildService: GuildService) {}
+  constructor(private userService: UserService) {}
 
   async canActivate() {
-    if (!this.userService.user)
-      await this.userService.updateUser();
-    if (!this.userService.savedUser)
-      await this.userService.updateSavedUser(); 
+    await this.userService.init();
         
     return Boolean(this.userService.user);
   }  

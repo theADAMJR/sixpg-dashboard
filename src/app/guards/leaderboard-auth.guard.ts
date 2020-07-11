@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { GuildService } from '../services/guild.service';
+import { BotService } from '../services/bot.service';
 import { UserService } from '../services/user.service';
 
 @Injectable({
@@ -8,16 +8,18 @@ import { UserService } from '../services/user.service';
 })
 export class LeaderboardAuthGuard implements CanActivate {
   constructor(
-    private guildService: GuildService,
+    private guildService: BotService,
     private userService: UserService) {}
 
   async canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const id = next.paramMap.get('id');
-    const guildConfig = await this.guildService.getSavedGuild(id);
+    const botId = next.paramMap.get('id');
+    const guildId = next.paramMap.get('id');
+
+    const guildConfig = await this.guildService.getSavedBot(botId);
     if (guildConfig?.settings.privateLeaderboard) {
-      const members = await this.guildService.getMembers(id);
+      const members = await this.guildService.getMembers(botId, guildId);
       return members.some(m => m.id === this.userService.user.id);
     }
-    return !guildConfig || !guildConfig.settings.privateLeaderboard;
+    return !(guildConfig || guildConfig.settings.privateLeaderboard);
   }
 }

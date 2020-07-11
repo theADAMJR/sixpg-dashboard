@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { GuildService } from '../services/guild.service';
+import { BotService } from '../services/bot.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { UserService } from '../services/user.service';
 })
 export class LogoutComponent implements OnInit {
   constructor(
-    private guildService: GuildService,
+    private guildService: BotService,
     private router: Router,
     private userService: UserService) {}
 
@@ -20,7 +20,7 @@ export class LogoutComponent implements OnInit {
     
     await this.userService.updateUser();
     await this.userService.updateSavedUser();
-    await this.guildService.updateGuilds();
+    await this.guildService.updateBots();
 
     this.router.navigate(['/']);
   }

@@ -1,4 +1,4 @@
-<bot-sidebar [waitFor]="savedbot">
+<bot-sidebar [waitFor]="savedBot">
     <div *ngIf="form" class="container">
         <form #f="ngForm" [formGroup]="form">
             <div>
@@ -36,15 +36,15 @@
                         <mat-label>Ban Words</mat-label>
                         <mat-chip-list formControlName="banWords"
                             #banWords aria-label="Ban word selection">
-                            <mat-chip *ngFor="let word of savedbot.autoMod.banWords" selectable
-                                    removable (removed)="remove(word, savedbot.autoMod.banWords)">
+                            <mat-chip *ngFor="let word of savedBot.autoMod.banWords" selectable
+                                    removable (removed)="remove(word, savedBot.autoMod.banWords)">
                                 {{ word }}
                                 <mat-icon matChipRemove>x</mat-icon>
                             </mat-chip>
                             <input placeholder="New word..."
                                     [matChipInputFor]="banWords"
                                     matChipInputAddOnBlur
-                                    (matChipInputTokenEnd)="add($event, savedbot.autoMod.banWords)">
+                                    (matChipInputTokenEnd)="add($event, savedBot.autoMod.banWords)">
                         </mat-chip-list>
                     </mat-form-field>
                 </div>
@@ -52,27 +52,32 @@
                     <mat-form-field appearance="outline">
                         <mat-label>Ban Links</mat-label>
                         <mat-chip-list #banLinks aria-label="Ban link selection">
-                            <mat-chip *ngFor="let link of savedbot.autoMod.banLinks" selectable
-                                    removable (removed)="remove(link, savedbot.autoMod.banLinks)">
+                            <mat-chip *ngFor="let link of savedBot.autoMod.banLinks" selectable
+                                    removable (removed)="remove(link, savedBot.autoMod.banLinks)">
                                 {{ link }}
                                 <mat-icon matChipRemove>x</mat-icon>
                             </mat-chip>
                             <input placeholder="New link..."
                                     [matChipInputFor]="banLinks"
                                     matChipInputAddOnBlur
-                                    (matChipInputTokenEnd)="add($event, savedbot.autoMod.banLinks)">
+                                    (matChipInputTokenEnd)="add($event, savedBot.autoMod.banLinks)">
                         </mat-chip-list>
                     </mat-form-field>
                 </div>
                 <div class="col-lg-4 col-sm-6">
                     <mat-form-field appearance="outline">
-                        <mat-label>Ignored Roles</mat-label>
-                        <mat-select multiple
-                            formControlName="ignoredRoles">
-                            <mat-option *ngFor="let role of roles" 
-                            [value]="role.id"
-                            [style.color]="'#' + role.color?.toString(16)">@{{ role.name }}</mat-option>
-                        </mat-select>
+                        <mat-label>Ignored Role Names</mat-label>
+                        <mat-chip-list #ignoredRoleNames aria-label="Name selection">
+                            <mat-chip *ngFor="let name of savedBot.autoMod.ignoredRoleNames" selectable
+                                    removable (removed)="remove(name, savedBot.autoMod.ignoredRoleNames)">
+                                {{ name }}
+                                <mat-icon matChipRemove>x</mat-icon>
+                            </mat-chip>
+                            <input placeholder="New name..."
+                                    [matChipInputFor]="ignoredRoleNames"
+                                    matChipInputAddOnBlur
+                                    (matChipInputTokenEnd)="add($event, savedBot.autoMod.ignoredRoleNames)">
+                        </mat-chip-list>
                     </mat-form-field>
                 </div>
                 <div class="col-lg-4 col-sm-6">

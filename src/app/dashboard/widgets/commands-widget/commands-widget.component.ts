@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GuildService } from 'src/app/services/guild.service';
+import { BotService } from 'src/app/services/bot.service';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { ActivatedRoute } from '@angular/router';
@@ -32,7 +32,7 @@ export class CommandsWidgetComponent implements OnInit {
   barChartData: ChartDataSets[] = [];
 
   constructor(
-    private guildService: GuildService,
+    private guildService: BotService,
     private route: ActivatedRoute) {}
     
   async ngOnInit() {
