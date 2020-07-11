@@ -1,0 +1,24 @@
+h4 {
+    margin-bottom: 35px;
+    cursor: pointer;
+}
+
+img {
+    padding: 0;
+}
+
+i {
+    padding-right: 5px;
+}
+
+.alt-name {
+    border-radius: 50%;
+    background-color: var(--background-primary);
+
+    width: 96px;
+    height: 96px;
+}
+
+.alt-name span {
+    font-size: 32px;
+}
