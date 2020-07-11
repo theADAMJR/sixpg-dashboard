@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { BotService } from './bot.service';
 import { HttpClientModule } from '@angular/common/http';
 
-describe('GuildService', () => {
+describe('BotService', () => {
   let service: BotService;
 
   beforeEach(() => {

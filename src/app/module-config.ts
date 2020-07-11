@@ -12,15 +12,15 @@ export abstract class ModuleConfig implements OnDestroy {
 
     form: FormGroup;
 
-    savedGuild: any;
-    guild: any;
-    originalSavedGuild: any;
+    savedBot: any;
+    bot: any;
+    originalsavedBot: any;
 
     channels: any = [];
     textChannels: any = [];
     roles: any = [];
 
-    get guildId() { return this.route.snapshot.paramMap.get('id'); }
+    get botId() { return this.route.snapshot.paramMap.get('id'); }
 
     private saveChanges$: Subscription;  
     private valueChanges$: Subscription;  
@@ -36,14 +36,14 @@ export abstract class ModuleConfig implements OnDestroy {
     async init() {
         const data = this.route.snapshot.data;
         
-        this.guild = this.botService.bots.find(g => g.id === this.guildId);
+        this.bot = this.botService.bots.find(g => g.id === this.botId);
 
         this.roles = data.roles;
         this.channels = data.channels;
         this.textChannels = data.channels.filter(c => c.type === 'text');
 
-        this.savedGuild = data.savedGuild;
-        this.originalSavedGuild = JSON.parse(JSON.stringify(this.savedGuild));
+        this.savedBot = data.savedBot;
+        this.originalsavedBot = JSON.parse(JSON.stringify(this.savedBot));
         
         await this.resetForm();
 
@@ -52,17 +52,17 @@ export abstract class ModuleConfig implements OnDestroy {
     }
 
     private async resetForm() {     
-        this.savedGuild = JSON.parse(JSON.stringify(this.originalSavedGuild));   
-        this.form = await this.buildForm(this.savedGuild);
+        this.savedBot = JSON.parse(JSON.stringify(this.originalsavedBot));   
+        this.form = await this.buildForm(this.savedBot);
         this.form.addControl('enabled',
-            new FormControl(this.savedGuild[this.moduleName]?.enabled));
+            new FormControl(this.savedBot[this.moduleName]?.enabled));
     }
 
     /**
      * Build the form to be used.
      * Called when on form init.
      */
-    abstract buildForm(savedGuild: any): FormGroup | Promise<FormGroup>;
+    abstract buildForm(savedBot: any): FormGroup | Promise<FormGroup>;
     
     private openSaveChanges() {
         const snackBarRef = this.saveChanges._openedSnackBarRef;
@@ -91,7 +91,7 @@ export abstract class ModuleConfig implements OnDestroy {
         console.log(this.form.value);
         try {
             if (this.form.valid)
-                await this.botService.saveBot(this.guildId, this.moduleName, this.form.value);
+                await this.botService.saveBot(this.botId, this.moduleName, this.form.value);
         } catch { alert('An error occurred when submitting the form - check console'); }
     }
 
@@ -100,7 +100,7 @@ export abstract class ModuleConfig implements OnDestroy {
      */
     async reset() {
         await this.resetForm();
-        this.savedGuild = JSON.parse(JSON.stringify(this.originalSavedGuild));
+        this.savedBot = JSON.parse(JSON.stringify(this.originalsavedBot));
         
         this.form.valueChanges
             .subscribe(() => this.openSaveChanges()); 

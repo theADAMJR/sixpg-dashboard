@@ -19,17 +19,17 @@
 - publically accessible via the API
 
 #### Guild
-- saves guild config data to allow users to customize their guilds via the dashboard
+- saves bot config data to allow users to customize their bots via the dashboard
 - represents a discord.js `Guild`
 - publically accessible via the API
 
 #### Log
-- saves audit log data when a manager edits their guild configs via the dashboard
+- saves audit log data when a manager edits their bot configs via the dashboard
 - publically accessible via the API
 
 #### Member
-- local guild member data which is used for storing XP data and warnings
-- represets a discord.js `GuildMember`
+- local bot member data which is used for storing XP data and warnings
+- represets a discord.js `BotMember`
 - publically accessible via the API
 
 #### User
@@ -43,7 +43,7 @@
 - base class for getting and setting mongoose documents
 
 #### Guilds
-- gets or creates a `GuildDocument`
+- gets or creates a `BotDocument`
 
 #### Logs
 - gets or creates a `LogsDocument`

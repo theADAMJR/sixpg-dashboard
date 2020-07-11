@@ -30,7 +30,7 @@ describe('CommandsModuleComponent', () => {
     
     const previousValue = component.form.value;
 
-    component.savedGuild = { commands: { configs: [] }};
+    component.savedBot = { commands: { configs: [] }};
     component.form.setValue({ configs: [] });
     component.reset();
 

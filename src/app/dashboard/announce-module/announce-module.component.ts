@@ -28,7 +28,7 @@ export class AnnounceModuleComponent extends ModuleConfig implements OnInit {
   async ngOnInit() {
     await super.init();    
 
-    this.eventConfigs = this.savedGuild.announce.events;
+    this.eventConfigs = this.savedBot.announce.events;
   }
 
   buildForm({ announce }: any) {
@@ -56,7 +56,7 @@ export class AnnounceModuleComponent extends ModuleConfig implements OnInit {
     const value = this.form.value;
     this.filterFormEvents(value);
     
-    await this.botService.saveBot(this.guildId, this.moduleName, value);
+    await this.botService.saveBot(this.botId, this.moduleName, value);
   }
 
   private filterFormEvents(value: any) {

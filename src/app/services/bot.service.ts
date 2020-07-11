@@ -2,11 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class BotService {
-  endpoint = environment.endpoint + '/guilds';
+  endpoint = environment.endpoint + '/bots';
   
   singleton = null;
 
@@ -25,11 +23,7 @@ export class BotService {
   getBot(id: string) {
     return this.bots?.find(g => g.id === id);
   }
-
-  getOwner(id: string) {
-    return this.http.get(`${this.endpoint}/${id}/owner`).toPromise();
-  }
-
+  
   getPublicBot(id: string): Promise<any> {
     return this.http.get(`${this.endpoint}/${id}/public`).toPromise();
   }
@@ -48,5 +42,9 @@ export class BotService {
 
   saveBot(id: string, module: string, value: any): Promise<any> {    
     return this.http.put(`${this.endpoint}/${id}/${module}?key=${this.key}`, value).toPromise();
+  }
+
+  createBot(value: any): Promise<any> {
+    return this.http.post(`${this.endpoint}?key=${this.key}`, value).toPromise();
   }
 }

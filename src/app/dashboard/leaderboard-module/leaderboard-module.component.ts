@@ -9,7 +9,7 @@ import { BotService } from '../../services/bot.service';
 })
 export class LeaderboardModuleComponent implements OnInit {
   members: any;
-  guild: any = {};
+  bot: any = {};
 
   constructor(
     private guildService: BotService,
@@ -20,6 +20,6 @@ export class LeaderboardModuleComponent implements OnInit {
     const guildId = this.route.snapshot.paramMap.get('guildId');
 
     this.members = await this.guildService.getMembers(botId, guildId);
-    this.guild = await this.guildService.getPublicBot(botId);
+    this.bot = await this.guildService.getPublicBot(botId);
   }
 }

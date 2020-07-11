@@ -31,8 +31,8 @@ export class LevelingModuleComponent extends ModuleConfig implements OnInit {
   
   buildForm({ leveling }: any) {
     const formGroup = new FormGroup({
-      ignoredRoles: new FormControl(leveling.ignoredRoles ?? []),
-      levelRoles: new FormArray([]),
+      ignoredRoleNames: new FormControl(leveling.ignoredRoles ?? []),
+      levelRoleNames: new FormArray([]),
       maxMessagesPerMinute: new FormControl(leveling.maxMessagesPerMinute ?? 3,
         [ Validators.min(1), Validators.max(30) ]),
       xpPerMessage: new FormControl(leveling.xpPerMessage ?? 50,
@@ -47,7 +47,7 @@ export class LevelingModuleComponent extends ModuleConfig implements OnInit {
         .setControl(i,
           (new FormGroup({
           level: new FormControl(leveling.levelRoles[i]?.level ?? 0, Validators.min(0)),
-          role: new FormControl(leveling.levelRoles[i]?.role ?? '')
+          roleName: new FormControl(leveling.levelRoles[i]?.role ?? '')
         })));
   }
 
@@ -57,8 +57,7 @@ export class LevelingModuleComponent extends ModuleConfig implements OnInit {
   }
 
   getXPForLevel(level: any) {
-    level = Number(level);
-    return (75 * (level + 1)**2) + (75 * (level + 1)) - 150;
+    return (75 * (+level + 1)**2) + (75 * (+level + 1)) - 150;
   }
 
   getHoursForLevel(level: number) {

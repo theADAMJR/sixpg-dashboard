@@ -14,7 +14,7 @@ export class AuthComponent implements OnInit {
     private auth: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    private guildService: BotService,
+    private botService: BotService,
     private userService: UserService) {}
 
   async ngOnInit() {
@@ -25,7 +25,7 @@ export class AuthComponent implements OnInit {
       localStorage.setItem('key', key);
     
       await this.userService.updateUser();
-      await this.guildService.updateBots();
+      await this.botService.updateBots();
       
       this.router.navigate(['/dashboard']);
     } catch {

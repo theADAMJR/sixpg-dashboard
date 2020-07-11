@@ -48,8 +48,8 @@ This is without webapp customization.
         "password": "youshallnotpass"
     },
     "tests": { // optional -> used for tests
-        "guild": {
-            "id": "yourTestGuildId" // used for integration tests
+        "bot": {
+            "id": "yourTestBotId" // used for integration tests
         }
     },
     "mongoURL": "mongodb://localhost/6PG", // database URL (port 27017)

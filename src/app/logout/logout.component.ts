@@ -11,7 +11,7 @@ import { UserService } from '../services/user.service';
 })
 export class LogoutComponent implements OnInit {
   constructor(
-    private guildService: BotService,
+    private botService: BotService,
     private router: Router,
     private userService: UserService) {}
 
@@ -20,7 +20,7 @@ export class LogoutComponent implements OnInit {
     
     await this.userService.updateUser();
     await this.userService.updateSavedUser();
-    await this.guildService.updateBots();
+    await this.botService.updateBots();
 
     this.router.navigate(['/']);
   }

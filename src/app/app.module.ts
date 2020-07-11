@@ -17,7 +17,7 @@ import { InviteComponent } from './invite/invite.component';
 import { LogoutComponent } from './logout/logout.component';
 import { DashboardComponent } from './dashboard/dashboard-overview/dashboard-overview.component';
 import { SidebarComponent } from './dashboard/sidebar/sidebar.component';
-import { GuildComponent } from './dashboard/guild/guild.component';
+import { BotComponent } from './dashboard/bot/bot.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { HomeComponent } from './home/home.component';
 import { CommandsModuleComponent } from './dashboard/commands-module/commands-module.component';
@@ -52,6 +52,7 @@ import { SnakeToSentenceCasePipe } from './pipes/snake-to-sentence-case.pipe';
 import { TruncatedPipe } from './pipes/truncated.pipe';
 import { DurationStringPipe } from './pipes/duration-string.pipe';
 import { CamelToSentenceCasePipe } from './pipes/camel-to-sentence-case.pipe';
+import { RocketButtonComponent } from './rocket-button/rocket-button.component';
 
 export class AlertErrorHandler implements ErrorHandler {
   async handleError(error: Error | any) {
@@ -80,7 +81,7 @@ export class AlertErrorHandler implements ErrorHandler {
     LogoutComponent,
     DashboardComponent,
     SidebarComponent,
-    GuildComponent,
+    BotComponent,
     SpinnerComponent,
     CommandsModuleComponent,
     AnnounceModuleComponent,
@@ -112,7 +113,8 @@ export class AlertErrorHandler implements ErrorHandler {
     SnakeToSentenceCasePipe,
     TruncatedPipe,
     DurationStringPipe,
-    CamelToSentenceCasePipe
+    CamelToSentenceCasePipe,
+    RocketButtonComponent
   ],
   imports: [
     AppRoutingModule,

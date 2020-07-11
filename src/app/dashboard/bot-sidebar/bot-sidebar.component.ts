@@ -5,14 +5,14 @@ import { BotService } from '../../services/bot.service';
 @Component({
   selector: 'bot-sidebar',
   templateUrl: './bot-sidebar.component.html',
-  styleUrls: ['./guild-sidebar.component.css']
+  styleUrls: ['./bot-sidebar.component.css']
 })
 export class BotSidebarComponent implements OnInit {
   @Input('waitFor') loaded = true;
   
   id: string;
-  guild: any;
-  savedGuild: any;
+  bot: any;
+  savedBot: any;
 
   constructor(
     private guildService: BotService,
@@ -25,10 +25,10 @@ export class BotSidebarComponent implements OnInit {
     this.route.paramMap.subscribe(async(paramMap) => {
       this.id = paramMap.get('id');
 
-      this.savedGuild = await this.guildService.getSavedBot(this.id);
-      this.guild = this.guildService.getBot(this.id);
+      this.savedBot = await this.guildService.getSavedBot(this.id);
+      this.bot = this.guildService.getBot(this.id);
       
-      if (!this.guild)
+      if (!this.bot)
         this.router.navigate(['/dashboard']);
     });
   }

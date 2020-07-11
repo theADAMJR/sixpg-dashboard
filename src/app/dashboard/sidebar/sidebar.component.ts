@@ -11,7 +11,7 @@ import { MatDrawer } from '@angular/material/sidenav';
 export class SidebarComponent implements OnInit {
   @ViewChild('drawer') drawer: MatDrawer;
 
-  get guilds() { return this.botService.bots || []; }
+  get bots() { return this.botService.bots || []; }
   get user() { return this.userService.user || {}; }
 
   constructor(

@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BotService } from '../../services/bot.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-guild',
-  templateUrl: './guild.component.html',
-  styleUrls: ['./guild.component.css']
+  templateUrl: './bot.component.html',
+  styleUrls: ['./bot.component.css']
 })
-export class GuildComponent implements OnInit {
+export class BotComponent implements OnInit {
   commands: any[]
   botNeedsPerms = false;
-  guild: any;
+  bot: any;
 
   constructor(
     private guildService: BotService,
@@ -20,9 +19,9 @@ export class GuildComponent implements OnInit {
   async ngOnInit() {
     this.route.paramMap.subscribe(async(paramMap) => {
       const id = paramMap.get('id');
-      this.guild = this.guildService.getBot(id);
+      this.bot = this.guildService.getBot(id);
 
-      const { commands } = await this.guildService.getSavedLog(this.guild.id);
+      const { commands } = await this.guildService.getSavedLog(this.bot.id);
       this.commands = commands;
     });
   }

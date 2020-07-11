@@ -3,7 +3,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ModuleConfig } from 'src/app/module-config';
 import { BotService } from 'src/app/services/bot.service';
 import { ActivatedRoute } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MusicService } from 'src/app/services/music.service';
 
@@ -16,6 +15,7 @@ export class MusicModuleComponent extends ModuleConfig implements OnInit {
   minSearchLength = 2;
   moduleName = 'music';
 
+  get botId() { return this.route.snapshot.paramMap.get('id'); }
   get focused() { return document.activeElement.id === 'search'; }
   
   constructor(

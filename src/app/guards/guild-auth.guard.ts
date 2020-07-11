@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 import { BotService } from '../services/bot.service';
 import { UserService } from '../services/user.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GuildAuthGuard implements CanActivate {
+export class BotAuthGuard implements CanActivate {
   constructor(
-    private guildService: BotService,
+    private botService: BotService,
     private userService: UserService) {}
 
   async canActivate(
@@ -17,16 +17,16 @@ export class GuildAuthGuard implements CanActivate {
         await this.userService.updateUser();
       if (!this.userService.savedUser)
         await this.userService.updateSavedUser();
-      if (this.guildService.bots.length <= 0)
-        await this.guildService.updateBots();
+      if (this.botService.bots.length <= 0)
+        await this.botService.updateBots();
 
-      const guildId = next.paramMap.get('id');                
-      this.guildService.singleton = next.data =
-        (guildId === this.guildService.singleton?.guildId) 
-          ? this.guildService.singleton : {
-            guildId,
-            savedGuild: await this.guildService.getSavedBot(guildId)
+      const botId = next.paramMap.get('id');                
+      this.botService.singleton = next.data =
+        (botId === this.botService.singleton?.botId) 
+          ? this.botService.singleton : {
+            botId,
+            savedBot: await this.botService.getSavedBot(botId)
           };
-      return this.guildService.bots?.some(g => g.id === guildId);
+      return this.botService.bots?.some(g => g.id === botId);
   }  
 }

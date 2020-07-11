@@ -6,15 +6,15 @@ import { ActivatedRouteSnapshot } from '@angular/router';
 describe('LeaderboardAuthGuard', () => {
   let guard: LeaderboardAuthGuard;
 
-  let guildConfig: any;
+  let botConfig: any;
   let members: any;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
 
-    const fakeGuildService = new class {
-      getSavedGuild() {
-        return guildConfig;
+    const fakeBotService = new class {
+      getsavedBot() {
+        return botConfig;
       }
       getMembers() {
         return members;
@@ -28,8 +28,8 @@ describe('LeaderboardAuthGuard', () => {
       }
     } as any;
 
-    guard = new LeaderboardAuthGuard(fakeGuildService, fakeUserService);
-    guildConfig = {};
+    guard = new LeaderboardAuthGuard(fakeBotService, fakeUserService);
+    botConfig = {};
     members = [];
   });
 
@@ -37,24 +37,24 @@ describe('LeaderboardAuthGuard', () => {
     expect(guard).toBeTruthy();
   });
 
-  it('canActivate returns true, if guild not found', async () => {
-    guildConfig = null;
+  it('canActivate returns true, if bot not found', async () => {
+    botConfig = null;
 
     const result = await guard.canActivate(new ActivatedRouteSnapshot(), null);
 
     expect(result).toBeTrue();
   });
 
-  it('canActivate returns false, if member not in private guild', async () => {
-    guildConfig.settings = { privateLeaderboard: true };
+  it('canActivate returns false, if member not in private bot', async () => {
+    botConfig.settings = { privateLeaderboard: true };
 
     const result = await guard.canActivate(new ActivatedRouteSnapshot(), null);
 
     expect(result).toBeFalse();
   });
 
-  it('canActivate returns true, if member in private guild', async () => {
-    guildConfig.settings = { privateLeaderboard: true };
+  it('canActivate returns true, if member in private bot', async () => {
+    botConfig.settings = { privateLeaderboard: true };
     members.push({ id: '123' });
 
     const result = await guard.canActivate(new ActivatedRouteSnapshot(), null);

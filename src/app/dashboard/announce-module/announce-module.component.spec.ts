@@ -33,7 +33,7 @@ describe('AnnounceModuleComponent', () => {
     fixture.detectChanges();
 
     component.init = async() => {};
-    component.savedGuild = { announce: { events: {}}};
+    component.savedBot = { announce: { events: {}}};
   });
 
   it('should create', () => {
@@ -47,7 +47,7 @@ describe('AnnounceModuleComponent', () => {
       channel: '123',
       message: 'a'
     } as AnnounceEvent ];
-    component.savedGuild = { announce: { events }};
+    component.savedBot = { announce: { events }};
     component.guildId = '123';
 
     const result = (component.form.get('events') as FormArray).get('0').value;

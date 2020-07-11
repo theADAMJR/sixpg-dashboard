@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ModuleConfig } from '../../module-config';
@@ -14,7 +13,7 @@ import { BotService } from '../../services/bot.service';
 export class GeneralModuleComponent extends ModuleConfig implements OnInit {
   moduleName = 'general';
 
-  get general() { return this.savedGuild.general; }
+  get general() { return this.savedBot.general; }
 
   constructor(
     guildService: BotService,

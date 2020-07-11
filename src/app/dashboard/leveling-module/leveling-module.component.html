@@ -13,9 +13,9 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6">
                     <mat-form-field appearance="outline">
-                        <mat-label>Ignored Roles</mat-label>
+                        <mat-label>Ignored Role Names</mat-label>
                         <mat-select multiple
-                            formControlName="ignoredRoles">
+                            formControlName="ignoredRoleNames">
                             <mat-option *ngFor="let role of roles" 
                                 [value]="role.id"
                                 [style.color]="'#' + role.color?.toString(16)">@{{ role.name }}</mat-option>
@@ -51,13 +51,9 @@
                         </div>
                         <div class="col-sm-6">
                             <mat-form-field appearance="outline">                                
-                                <mat-label>Role</mat-label>
-                                <mat-select
-                                    formControlName="role">
-                                    <mat-option *ngFor="let role of roles" 
-                                        [value]="role.id"
-                                        [style.color]="'#' + role.color?.toString(16)">@{{ role.name }}</mat-option>
-                                </mat-select>
+                                <mat-label>Role Name</mat-label>
+                                <input matInput
+                                    formControlName="roleName" type="text">
                             </mat-form-field>
                         </div>
                         <div [@expandCollapse]="(level.value > 0) ? 'down' : 'up'"
