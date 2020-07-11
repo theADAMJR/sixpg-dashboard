@@ -1,4 +1,4 @@
-<guild-sidebar [waitFor]="savedGuild && form">
+<bot-sidebar [waitFor]="savedbot && form">
     <div *ngIf="form" class="container">
         <form #f="ngForm" [formGroup]="form">
             <div class="d-flex justify-content-between">
@@ -36,4 +36,4 @@
             </div>
         </form>
     </div>
-</guild-sidebar>
+</bot-sidebar>

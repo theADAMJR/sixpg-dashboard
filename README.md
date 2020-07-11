@@ -1,9 +1,9 @@
-# 2PG Dashboard
-Dashboard to customize 2PG; made with TypeScript + Angular 9 -> https://2pg.xyz
+# 6PG Dashboard
+Dashboard to customize 6PG; made with TypeScript + Angular 9 -> https://6PG.xyz
 
-**Used by**: [2PG](https://2pg.xyz), [3PG](https://3pg.xyz), [DBots](https://dbots.co)
+**Used by**: [6PG](https://6PG.xyz), [3PG](https://3pg.xyz), [DBots](https://dbots.co)
 
-![Guild Dashboard](https://2pg.xyz/assets/docs/img/dashboard-v0.1.0b.png)
+![Guild Dashboard](https://6PG.xyz/assets/docs/img/dashboard-v0.1.0b.png)
 
 ## Prerequisites
 - Know how to use JavaScript, TypeScript, and Angular 9
@@ -12,7 +12,7 @@ Dashboard to customize 2PG; made with TypeScript + Angular 9 -> https://2pg.xyz
 Make sure you have redirects set to the /auth link you will be using.
 This will be used in the final step of the OAuth2 login.
   
-![Redirects](https://i.ibb.co/hyBCj9D/2pg-redirect.png)
+![Redirects](https://i.ibb.co/hyBCj9D/6PG-redirect.png)
 
 ---
 

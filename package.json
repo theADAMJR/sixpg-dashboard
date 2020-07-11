@@ -35,6 +35,7 @@
     "font-awesome": "^4.7.0",
     "fuse.js": "^6.4.0",
     "highlight.js": "^9.18.1",
+    "jquery": "^3.5.1",
     "marked": "^0.8.2",
     "ng2-charts": "^2.3.0",
     "ngx-color-picker": "^9.0.0",

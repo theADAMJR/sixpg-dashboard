@@ -1,5 +1,5 @@
 # Setup
-This guide will show you how to setup 2PG and the dashboard to customize 2PG, using your own bot.
+This guide will show you how to setup 6PG and the dashboard to customize 6PG, using your own bot.
 
 **Requirements**:
 - NodeJS (bot + webapp)
@@ -11,10 +11,10 @@ This guide will show you how to setup 2PG and the dashboard to customize 2PG, us
 The backend; made with: TypeScript, ExpressJS
 
 ### Bot and Webapp Setup
-Guide to setting up 2PG, and starting the bot, and precompiled webapp.
+Guide to setting up 6PG, and starting the bot, and precompiled webapp.
 This is without webapp customization.
 
-1) `Fork` the [2PG Repo](https://github.com/theADAMJR/2pg), or download it
+1) `Fork` the [6PG Repo](https://github.com/theADAMJR/6PG), or download it
 
 2) Open the downloaded folder in terminal and type `npm i` to install required packages
   - This is done within the root of the folder
@@ -34,14 +34,14 @@ This is without webapp customization.
         "id": "discordBotId" // used for webapp login integration
     },
     "api": {
-        "url": "https://2pg.xyz/api", // used for xp cards etc.
+        "url": "https://6PG.xyz/api", // used for xp cards etc.
         "managerPermission": "MANAGE_GUILD" // required permission for managing dashboard ,
         "stripe": { // used for payments/donations
             "apiKey": "stripeAPIKey" // your https://stripe.com/dashboard API key
         }
     },
     "webapp": {
-        "url": "https://2pg.xyz", // the URL of the dashboard
+        "url": "https://6PG.xyz", // the URL of the dashboard
         "distPath": "/Documents/Projects/twopg-dashboard/dist/twopg-dashboard" // the compiled webapp; contains index.html (created with 'ng build --prod' in webapp)
     },
     "lavalink": { // used for music server
@@ -52,7 +52,7 @@ This is without webapp customization.
             "id": "yourTestGuildId" // used for integration tests
         }
     },
-    "mongoURL": "mongodb://localhost/2PG", // database URL (port 27017)
+    "mongoURL": "mongodb://localhost/6PG", // database URL (port 27017)
     "modules": ["announce", "auto-mod", "general", "music", "xp"] // enabled modules used for validation in API
 }
 ```

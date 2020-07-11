@@ -1,46 +1,46 @@
 <sidebar>
-    <div *ngIf="guild" class="side-nav navbar-dark">
+    <div *ngIf="bot" class="side-nav navbar-dark">
         <div class="header">
             <div class="d-flex justify-content-center">
-                <img *ngIf="guild.iconURL"
-                    [src]="guild.iconURL" [alt]="guild.name">
-                <div *ngIf="!guild.iconURL"
+                <img *ngIf="bot.iconURL"
+                    [src]="bot.iconURL" [alt]="bot.name">
+                <div *ngIf="!bot.iconURL"
                     class="alt-name d-flex flex-column justify-content-center">
-                    <span>{{ guild.nameAcronym }}</span>
+                    <span>{{ bot.nameAcronym }}</span>
                 </div>
             </div>
-            <h4 [routerLink]="['/servers/' + id]">{{ guild.name }}</h4>
+            <h4 [routerLink]="['/servers/' + id]">{{ bot.name }}</h4>
         </div>
             <div class="category">Config</div>
-            <div *ngIf="guild && savedGuild"
+            <div *ngIf="bot && savedbot"
                 class="navbar-nav">
                 <a [routerLink]="['/servers/' + id + '/announce']" routerLinkActive="active"
-                    [class.interactive-muted]="!savedGuild.announce.enabled"
+                    [class.interactive-muted]="!savedbot.announce.enabled"
                     class="nav-item nav-link">                    
                     <i class="text-muted fas fa-bullhorn"></i> Announce</a>
 
                 <a [routerLink]="['/servers/' + id + '/auto-mod']" routerLinkActive="active"
-                    [class.interactive-muted]="!savedGuild.autoMod.enabled"
+                    [class.interactive-muted]="!savedbot.autoMod.enabled"
                     class="nav-item nav-link">
                     <i class="text-muted fas fa-gavel"></i> Auto-mod</a>
 
                 <a [routerLink]="['/servers/' + id + '/commands']" routerLinkActive="active"
-                    [class.interactive-muted]="!savedGuild.commands.enabled"
+                    [class.interactive-muted]="!savedbot.commands.enabled"
                     class="nav-item nav-link">
                     <i class="text-muted fas fa-code"></i> Commands</a>
 
                 <a [routerLink]="['/servers/' + id + '/general']" routerLinkActive="active"
-                    [class.interactive-muted]="!savedGuild.general.enabled"
+                    [class.interactive-muted]="!savedbot.general.enabled"
                     class="nav-item nav-link">
                     <i class="text-muted fas fa-terminal"></i> General</a>
 
                 <a [routerLink]="['/servers/' + id + '/leveling']" routerLinkActive="active"
-                    [class.interactive-muted]="!savedGuild.leveling.enabled"
+                    [class.interactive-muted]="!savedbot.leveling.enabled"
                     class="nav-item nav-link">
                     <i class="text-muted fas fa-star"></i> Leveling</a>
 
                 <a [routerLink]="['/servers/' + id + '/music']" routerLinkActive="active"
-                    [class.interactive-muted]="!savedGuild.music.enabled"
+                    [class.interactive-muted]="!savedbot.music.enabled"
                     class="nav-item nav-link">
                     <i class="text-muted fas fa-music"></i> Music</a>
             </div>

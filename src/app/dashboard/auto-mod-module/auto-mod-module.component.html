@@ -1,4 +1,4 @@
-<guild-sidebar [waitFor]="savedGuild">
+<bot-sidebar [waitFor]="savedbot">
     <div *ngIf="form" class="container">
         <form #f="ngForm" [formGroup]="form">
             <div>
@@ -36,15 +36,15 @@
                         <mat-label>Ban Words</mat-label>
                         <mat-chip-list formControlName="banWords"
                             #banWords aria-label="Ban word selection">
-                            <mat-chip *ngFor="let word of savedGuild.autoMod.banWords" selectable
-                                    removable (removed)="remove(word, savedGuild.autoMod.banWords)">
+                            <mat-chip *ngFor="let word of savedbot.autoMod.banWords" selectable
+                                    removable (removed)="remove(word, savedbot.autoMod.banWords)">
                                 {{ word }}
                                 <mat-icon matChipRemove>x</mat-icon>
                             </mat-chip>
                             <input placeholder="New word..."
                                     [matChipInputFor]="banWords"
                                     matChipInputAddOnBlur
-                                    (matChipInputTokenEnd)="add($event, savedGuild.autoMod.banWords)">
+                                    (matChipInputTokenEnd)="add($event, savedbot.autoMod.banWords)">
                         </mat-chip-list>
                     </mat-form-field>
                 </div>
@@ -52,15 +52,15 @@
                     <mat-form-field appearance="outline">
                         <mat-label>Ban Links</mat-label>
                         <mat-chip-list #banLinks aria-label="Ban link selection">
-                            <mat-chip *ngFor="let link of savedGuild.autoMod.banLinks" selectable
-                                    removable (removed)="remove(link, savedGuild.autoMod.banLinks)">
+                            <mat-chip *ngFor="let link of savedbot.autoMod.banLinks" selectable
+                                    removable (removed)="remove(link, savedbot.autoMod.banLinks)">
                                 {{ link }}
                                 <mat-icon matChipRemove>x</mat-icon>
                             </mat-chip>
                             <input placeholder="New link..."
                                     [matChipInputFor]="banLinks"
                                     matChipInputAddOnBlur
-                                    (matChipInputTokenEnd)="add($event, savedGuild.autoMod.banLinks)">
+                                    (matChipInputTokenEnd)="add($event, savedbot.autoMod.banLinks)">
                         </mat-chip-list>
                     </mat-form-field>
                 </div>
@@ -86,4 +86,4 @@
             </div>
         </form>
     </div>
-</guild-sidebar>
+</bot-sidebar>

@@ -1,4 +1,4 @@
-<guild-sidebar>
+<bot-sidebar>
     <section class="container">
         <div class="row color-heading">
             <div class="col-lg-3 col-sm-6">
@@ -23,12 +23,12 @@
             </div>
             <div class="col-lg-3 col-sm-6">
                 <div class="stats cursor-pointer">
-                    <i class="fa fa-hashtag" aria-hidden="true"></i> {{ guild.channels?.length }} Channels
+                    <i class="fa fa-hashtag" aria-hidden="true"></i> {{ bot.channels?.length }} Channels
                 </div>
             </div>
             <div class="col-lg-3 col-sm-6">
                 <div class="stats cursor-pointer">
-                    <i class="fa fa-user-o" aria-hidden="true"></i> {{ guild.memberCount | number }} Members
+                    <i class="fa fa-user-o" aria-hidden="true"></i> {{ bot.memberCount | number }} Members
                 </div>
             </div>
         </div>
@@ -46,4 +46,4 @@
             </div>
         </div>
     </section>
-</guild-sidebar>
+</bot-sidebar>

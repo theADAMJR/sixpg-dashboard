@@ -1,24 +1,24 @@
 <mat-sidenav-container fullscreen>
     <mat-sidenav #drawer mode="side" opened>
-        <div class="guilds px-2">
+        <div class="bots px-2">
             <div class="user">
-                <div routerLink="/dashboard" class="guild-icon">
+                <div routerLink="/dashboard" class="bot-icon">
                     <img [src]="user.displayAvatarURL" alt="{{ user.username }}">
                 </div>
-                <hr class="guild-seperator">
+                <hr class="bot-seperator">
             </div>
-            <div *ngFor="let guild of guilds" [routerLink]="['/servers/' + guild.id]"
-                class="guild-icon"
-                [matTooltip]="guild.name">
-                <img *ngIf="guild.iconURL"
-                    [src]="guild.iconURL" [alt]="guild.name">
-                <span *ngIf="!guild.iconURL"
-                    class="d-flex justify-content-center">{{ guild.nameAcronym }}</span>
+            <div *ngFor="let bot of bots" [routerLink]="['/servers/' + bot.id]"
+                class="bot-icon"
+                [matTooltip]="bot.name">
+                <img *ngIf="bot.iconURL"
+                    [src]="bot.iconURL" [alt]="bot.name">
+                <span *ngIf="!bot.iconURL"
+                    class="d-flex justify-content-center">{{ bot.nameAcronym }}</span>
             </div>
             <div routerLink="/invite" 
-                class="guild-icon invite"
+                class="bot-icon invite"
                 matTooltip="Add a Server">
-                <span class="add-guild pt-0 d-flex justify-content-center flex-column">+</span>
+                <span class="add-bot pt-0 d-flex justify-content-center flex-column">+</span>
             </div>
         </div>
         <div class="options">

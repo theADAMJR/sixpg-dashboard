@@ -1,4 +1,4 @@
-.guild-icon {
+.bot-icon {
     border-radius: 50%;
 
     margin: 5px;
@@ -11,11 +11,11 @@
     cursor: pointer;
 }
 
-.guild-icon img:hover, .guild-icon:hover, .guild-icon span:hover {
+.bot-icon img:hover, .bot-icon:hover, .bot-icon span:hover {
     border-radius: 25%;
 }
 
-.guild-icon span {
+.bot-icon span {
     text-align: center;
 
     font-size: 18px;
@@ -27,7 +27,7 @@
     transition: all .35s;
 }
 
-.guild-icon img {
+.bot-icon img {
     max-width: 52px;
     border-radius: 50%;
 
@@ -42,7 +42,7 @@ button {
     font-size: 32px;
 }
 
-.guilds {
+.bots {
     background-color: var(--background-tertiary);
     float: left;
     height: inherit;
@@ -76,7 +76,7 @@ mat-sidenav {
     background-color: var(--background-tertiary);
 }
 
-.guild-icon .add-guild {
+.bot-icon .add-bot {
     font-size: 40px;
 
     color: var(--secondary);
@@ -86,7 +86,7 @@ mat-sidenav {
     background-color: var(--tertiary);
 }
 
-.guild-seperator {
+.bot-seperator {
     height: 2px;
     width: 32px;
     border-radius: 1px;
