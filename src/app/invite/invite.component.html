@@ -3,14 +3,14 @@
     <h1>New <i class="fas fa-robot"></i></h1>
     <div class="d-flex justify-content-center">
       <form #f="ngForm" [formGroup]="form">
-          <mat-form-field appearance="outline">
-            <mat-label>Bot Token</mat-label>
-            <input formControlName="token" type="text" matInput>
-          </mat-form-field>
-          <div class="pl-5 ml-1">
-            <rocket-button [precondition]="form.dirty && form.valid"
-              (animated)="submit()">Go!</rocket-button>
-          </div>
+        <mat-form-field appearance="outline">
+          <mat-label>Bot Token</mat-label>
+          <input formControlName="token" type="text" matInput>
+        </mat-form-field>
+        <div class="pl-5 ml-1">
+          <rocket-button [precondition]="form.dirty && form.valid"
+            (animated)="submit()">Go!</rocket-button>
+        </div>
       </form>
     </div>
   </section>

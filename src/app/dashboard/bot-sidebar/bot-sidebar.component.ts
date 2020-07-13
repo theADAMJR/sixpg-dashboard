@@ -14,6 +14,8 @@ export class BotSidebarComponent implements OnInit {
   bot: any;
   savedBot: any;
 
+  get botInviteLink() { return `https://discord.com/api/oauth2/authorize?client_id=${this.id}&permissions=8&scope=bot`; }
+
   constructor(
     private guildService: BotService,
     private route: ActivatedRoute,

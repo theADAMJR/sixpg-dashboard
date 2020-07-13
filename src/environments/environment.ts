@@ -7,7 +7,6 @@ export const environment = {
   endpoint: 'http://localhost:3000/api',
   discordInvite: 'https://discord.gg/24tycau',
   githubURL: 'https://github.com/theADAMJR/6PG',
-  stripePublicKey: 'pk_test_rjQKo5c9pcHvDFjFe1mfdKib00Es3eJ831',
   version: 'v0.0.1a',
   test: {
     botId: '685862664223850497'

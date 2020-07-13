@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ModuleConfig } from '../../module-config';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -12,6 +12,10 @@ import { BotService } from '../../services/bot.service';
 })
 export class SettingsModuleComponent extends ModuleConfig implements OnInit {
   moduleName = 'settings';
+
+  dangerousForm = new FormGroup({
+    token: new FormControl('', Validators.pattern(/^[A-Za-z\d]{24}\.[A-Za-z\d-_]{6}\.[A-Za-z\d-_]{27}$/))
+  });
 
   constructor(
     private router: Router,
@@ -39,7 +43,12 @@ export class SettingsModuleComponent extends ModuleConfig implements OnInit {
 
     await this.botService.delete(this.botId);
     await this.router.navigate(['/dashboard']);
-    
+
+    await this.botService.updateBots();
+  }
+
+  async changeToken() {
+    this.bot = await this.botService.changeToken(this.botId, this.dangerousForm.value.token);
     await this.botService.updateBots();
   }
 }

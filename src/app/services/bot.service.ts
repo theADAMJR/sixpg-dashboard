@@ -56,11 +56,11 @@ export class BotService {
     return this.http.get(`${this.endpoint}/${botId}/guilds/${guildId}`).toPromise();
   }
   
-  delete(id: string) {
+  delete(id: string): Promise<any> {
     return this.http.delete(`${this.endpoint}/${id}?key=${this.key}`).toPromise();
   }
 
-  changeToken(id: string, newToken: string) {
-    return this.http.patch(`${this.endpoint}/${id}?key=${this.key}`, { newToken }).toPromise();
+  changeToken(id: string, token: string): Promise<any> {
+    return this.http.patch(`${this.endpoint}/${id}?key=${this.key}`, { token }).toPromise();
   }
 }

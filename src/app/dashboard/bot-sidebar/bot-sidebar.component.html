@@ -54,6 +54,11 @@
 
         <div class="category">Other</div>
         <div class="navbar-nav">
+            <a [href]="botInviteLink"
+                target="_blank"
+                class="nav-item nav-link">
+                <i class="fas fa-plus-square" aria-hidden="true"></i> Invite Bot
+            </a>
             <a [routerLink]="['/bots/' + id + '/settings']" routerLinkActive="active"
                 class="nav-item nav-link">
                 <i class="fa fa-cog"></i> Settings

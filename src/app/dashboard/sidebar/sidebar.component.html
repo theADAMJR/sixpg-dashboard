@@ -7,13 +7,15 @@
                 </div>
                 <hr class="bot-seperator">
             </div>
-            <div *ngFor="let bot of bots" [routerLink]="['/bots/' + bot.id]"
-                class="bot-icon"
-                [matTooltip]="bot.name">
-                <img *ngIf="bot.displayAvatarURL"
-                    [src]="bot.displayAvatarURL" [alt]="bot.name">
-                <span *ngIf="!bot.displayAvatarURL"
-                    class="d-flex justify-content-center">{{ bot.nameAcronym }}</span>
+            <div *ngFor="let bot of bots">
+                <div *ngIf="bot" [routerLink]="['/bots/' + bot.id]"
+                    class="bot-icon"
+                    [matTooltip]="bot.name">
+                    <img *ngIf="bot.displayAvatarURL"
+                        [src]="bot.displayAvatarURL" [alt]="bot.name">
+                    <span *ngIf="!bot.displayAvatarURL"
+                        class="d-flex justify-content-center">{{ bot.nameAcronym }}</span>
+                </div>
             </div>
             <div routerLink="/add-bot" 
                 class="bot-icon invite"

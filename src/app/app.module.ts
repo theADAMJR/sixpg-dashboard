@@ -38,7 +38,6 @@ import { PremiumDirective } from './dashboard/directives/premium.directive';
 import { SaveChangesComponent } from './dashboard/save-changes/save-changes.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { PaymentSuccessComponent } from './payment-success/payment-success.component';
-import { PlusComponent } from './plus/plus.component';
 import { DocsComponent } from './docs/docs.component';
 import { CleanDateTimePipe } from './pipes/clean-date-time.pipe';
 import { MemberUsernameComponent } from './member-username/member-username.component';
@@ -101,7 +100,6 @@ export class AlertErrorHandler implements ErrorHandler {
     SaveChangesComponent,
     NotFoundComponent,
     PaymentSuccessComponent,
-    PlusComponent,
     DocsComponent,
     CleanDateTimePipe,
     MemberUsernameComponent,

@@ -22,10 +22,9 @@ import { LeaderboardModuleComponent } from './dashboard/leaderboard-module/leade
 import { LeaderboardAuthGuard } from './guards/leaderboard-auth.guard';
 import { XPCardComponent } from './xp-card/xp-card.component';
 import { PaymentSuccessComponent } from './payment-success/payment-success.component';
-import { PlusComponent } from './plus/plus.component';
 import { DocsComponent } from './docs/docs.component';
 import { CanDeactivateDashboard } from './guards/can-deactivate-dashboard.guard';
-import { BotAuthGuard } from './guards/guild-auth.guard';
+import { BotAuthGuard } from './guards/bot-auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -52,7 +51,6 @@ const routes: Routes = [
 
   { path: 'bots/:id/leaderboard/:guildId', component: LeaderboardModuleComponent, canActivate: [LeaderboardAuthGuard] },
 
-  { path: 'plus', component: PlusComponent },
   { path: 'payment-success', component: PaymentSuccessComponent },
   { path: '**', component: NotFoundComponent }
 ];
