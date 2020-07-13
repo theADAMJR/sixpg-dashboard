@@ -1,5 +1,6 @@
-<bot-sidebar [waitFor]="savedBot && form">
-    <div *ngIf="form" class="container">
+<bot-sidebar>
+    <div *ngIf="form"
+        class="container">
         <form #f="ngForm" [formGroup]="form">
             <div class="d-flex justify-content-between">
                 <h1 class="display-3">Announce</h1>

@@ -1,4 +1,4 @@
-<bot-sidebar [waitFor]="savedBot && general">
+<bot-sidebar>
     <div *ngIf="form" class="container">
         <form #f="ngForm" [formGroup]="form">
             <div class="d-flex justify-content-between">
@@ -19,15 +19,15 @@
                     <mat-form-field appearance="outline">
                         <mat-label>Ignored Channel Names</mat-label>
                         <mat-chip-list #ignoredChannelNames aria-label="Name selection">
-                            <mat-chip *ngFor="let name of savedBot.autoMod.ignoredChannelNames" selectable
-                                    removable (removed)="remove(name, savedBot.autoMod.ignoredChannelNames)">
+                            <mat-chip *ngFor="let name of savedBot.general.ignoredChannelNames" selectable
+                                    removable (removed)="remove(name, savedBot.general.ignoredChannelNames)">
                                 {{ name }}
                                 <mat-icon matChipRemove>x</mat-icon>
                             </mat-chip>
                             <input placeholder="New name..."
                                     [matChipInputFor]="ignoredChannelNames"
                                     matChipInputAddOnBlur
-                                    (matChipInputTokenEnd)="add($event, savedBot.autoMod.ignoredChannelNames)">
+                                    (matChipInputTokenEnd)="add($event, savedBot.general.ignoredChannelNames)">
                         </mat-chip-list>
                     </mat-form-field>
                 </div>
@@ -35,15 +35,15 @@
                     <mat-form-field appearance="outline">
                         <mat-label>Auto Role Names</mat-label>
                         <mat-chip-list #autoRoleNames aria-label="Name selection">
-                            <mat-chip *ngFor="let name of savedBot.autoMod.autoRoleNames" selectable
-                                    removable (removed)="remove(name, savedBot.autoMod.autoRoleNames)">
+                            <mat-chip *ngFor="let name of savedBot.general.autoRoleNames" selectable
+                                    removable (removed)="remove(name, savedBot.general.autoRoleNames)">
                                 {{ name }}
                                 <mat-icon matChipRemove>x</mat-icon>
                             </mat-chip>
                             <input placeholder="New name..."
                                     [matChipInputFor]="autoRoleNames"
                                     matChipInputAddOnBlur
-                                    (matChipInputTokenEnd)="add($event, savedBot.autoMod.autoRoleNames)">
+                                    (matChipInputTokenEnd)="add($event, savedBot.general.autoRoleNames)">
                         </mat-chip-list>
                     </mat-form-field>
                 </div>

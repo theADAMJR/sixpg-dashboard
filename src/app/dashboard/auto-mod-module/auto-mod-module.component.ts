@@ -32,7 +32,7 @@ export class AutoModModuleComponent extends ModuleConfig implements OnInit {
       filters: new FormControl(autoMod.filters ?? []),
       autoDeleteMessages: new FormControl(autoMod.autoDeleteMessages ?? true),
       autoWarnUsers: new FormControl(autoMod.autoWarnUsers ?? false),
-      ignoredRoleNames: new FormControl(autoMod.ignoredRoles ?? []),
+      ignoredRoleNames: new FormControl(autoMod.ignoredRoleNames ?? []),
       filterThreshold: new FormControl(autoMod.filterThreshold ?? 5,
         [ Validators.min(1), Validators.max(20) ]),
     });

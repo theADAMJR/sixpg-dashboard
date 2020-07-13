@@ -31,7 +31,7 @@ export class LevelingModuleComponent extends ModuleConfig implements OnInit {
   
   buildForm({ leveling }: any) {
     const formGroup = new FormGroup({
-      ignoredRoleNames: new FormControl(leveling.ignoredRoles ?? []),
+      ignoredRoleNames: new FormControl(leveling.ignoredRoleNames ?? []),
       levelRoleNames: new FormArray([]),
       maxMessagesPerMinute: new FormControl(leveling.maxMessagesPerMinute ?? 3,
         [ Validators.min(1), Validators.max(30) ]),
@@ -43,11 +43,11 @@ export class LevelingModuleComponent extends ModuleConfig implements OnInit {
   }
   private buildLevelRolesFormArray(formGroup: FormGroup, leveling: any) {
     for (const i of this.levelRoleIndices)
-      (formGroup.get('levelRoles') as FormArray)
+      (formGroup.get('levelRoleNames') as FormArray)
         .setControl(i,
           (new FormGroup({
-          level: new FormControl(leveling.levelRoles[i]?.level ?? 0, Validators.min(0)),
-          roleName: new FormControl(leveling.levelRoles[i]?.role ?? '')
+          level: new FormControl(leveling.levelRoleNames[i]?.level ?? 0, Validators.min(0)),
+          roleName: new FormControl(leveling.levelRoleNames[i]?.roleName ?? '')
         })));
   }
 

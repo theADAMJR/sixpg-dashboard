@@ -1,68 +1,65 @@
 <sidebar>
-    <div *ngIf="bot" class="side-nav navbar-dark">
+    <div *ngIf="bot"
+        class="side-nav navbar-dark">
         <div class="header">
             <div class="d-flex justify-content-center">
-                <img *ngIf="bot.iconURL"
-                    [src]="bot.iconURL" [alt]="bot.name">
-                <div *ngIf="!bot.iconURL"
+                <img *ngIf="bot.displayAvatarURL"
+                    [src]="bot.displayAvatarURL" [alt]="bot.name">
+                <div *ngIf="!bot.displayAvatarURL"
                     class="alt-name d-flex flex-column justify-content-center">
-                    <span>{{ bot.nameAcronym }}</span>
+                    <span>{{ bot.username }}</span>
                 </div>
             </div>
-            <h4 [routerLink]="['/servers/' + id]">{{ bot.name }}</h4>
+            <h4 [routerLink]="['/bots/' + id]">{{ bot.username }}<span class="text-muted">#{{ bot.discriminator }}</span></h4>
         </div>
-            <div class="category">Config</div>
-            <div *ngIf="bot && savedBot"
-                class="navbar-nav">
-                <a [routerLink]="['/servers/' + id + '/announce']" routerLinkActive="active"
-                    [class.interactive-muted]="!savedBot.announce.enabled"
-                    class="nav-item nav-link">                    
-                    <i class="text-muted fas fa-bullhorn"></i> Announce</a>
+        <div class="category">Config</div>
+        <div class="navbar-nav">
+            <a [routerLink]="['/bots/' + id + '/announce']" routerLinkActive="active"
+                [class.interactive-muted]="!savedBot.announce.enabled"
+                class="nav-item nav-link">                    
+                <i class="text-muted fas fa-bullhorn"></i> Announce</a>
 
-                <a [routerLink]="['/servers/' + id + '/auto-mod']" routerLinkActive="active"
-                    [class.interactive-muted]="!savedBot.autoMod.enabled"
-                    class="nav-item nav-link">
-                    <i class="text-muted fas fa-gavel"></i> Auto-mod</a>
+            <a [routerLink]="['/bots/' + id + '/auto-mod']" routerLinkActive="active"
+                [class.interactive-muted]="!savedBot.autoMod.enabled"
+                class="nav-item nav-link">
+                <i class="text-muted fas fa-gavel"></i> Auto-mod</a>
 
-                <a [routerLink]="['/servers/' + id + '/commands']" routerLinkActive="active"
-                    [class.interactive-muted]="!savedBot.commands.enabled"
-                    class="nav-item nav-link">
-                    <i class="text-muted fas fa-code"></i> Commands</a>
+            <a [routerLink]="['/bots/' + id + '/commands']" routerLinkActive="active"
+                [class.interactive-muted]="!savedBot.commands.enabled"
+                class="nav-item nav-link">
+                <i class="text-muted fas fa-code"></i> Commands</a>
 
-                <a [routerLink]="['/servers/' + id + '/general']" routerLinkActive="active"
-                    [class.interactive-muted]="!savedBot.general.enabled"
-                    class="nav-item nav-link">
-                    <i class="text-muted fas fa-terminal"></i> General</a>
+            <a [routerLink]="['/bots/' + id + '/general']" routerLinkActive="active"
+                [class.interactive-muted]="!savedBot.general.enabled"
+                class="nav-item nav-link">
+                <i class="text-muted fas fa-terminal"></i> General</a>
 
-                <a [routerLink]="['/servers/' + id + '/leveling']" routerLinkActive="active"
-                    [class.interactive-muted]="!savedBot.leveling.enabled"
-                    class="nav-item nav-link">
-                    <i class="text-muted fas fa-star"></i> Leveling</a>
+            <a [routerLink]="['/bots/' + id + '/leveling']" routerLinkActive="active"
+                [class.interactive-muted]="!savedBot.leveling.enabled"
+                class="nav-item nav-link">
+                <i class="text-muted fas fa-star"></i> Leveling</a>
 
-                <a [routerLink]="['/servers/' + id + '/music']" routerLinkActive="active"
-                    [class.interactive-muted]="!savedBot.music.enabled"
-                    class="nav-item nav-link">
-                    <i class="text-muted fas fa-music"></i> Music</a>
-            </div>
-
-            <div class="category">More</div>
-            <div class="navbar-nav">
-                <a [routerLink]="['/leaderboard/' + id]" routerLinkActive="active"
-                    class="nav-item nav-link">
-                    <i class="fas fa-trophy"></i> Leaderboard</a>
-                <a [routerLink]="['/servers/' + id + '/log']" routerLinkActive="active"
-                    class="nav-item nav-link">
-                    <i class="fas fa-file-alt"></i> Log</a>
-            </div>
-
-            <div class="category">Other</div>
-            <div class="navbar-nav">
-                <a [routerLink]="['/servers/' + id + '/settings']" routerLinkActive="active"
-                    class="nav-item nav-link">
-                    <i class="fa fa-cog"></i> Settings
-                </a>
-            </div>
+            <a [routerLink]="['/bots/' + id + '/music']" routerLinkActive="active"
+                [class.interactive-muted]="!savedBot.music.enabled"
+                class="nav-item nav-link">
+                <i class="text-muted fas fa-music"></i> Music</a>
         </div>
+
+        <div class="category">More</div>
+        <div class="navbar-nav">
+            <a [routerLink]="['/bots/' + id + '/log']" routerLinkActive="active"
+                class="nav-item nav-link">
+                <i class="fas fa-file-alt"></i> Log</a>
+        </div>
+
+        <div class="category">Other</div>
+        <div class="navbar-nav">
+            <a [routerLink]="['/bots/' + id + '/settings']" routerLinkActive="active"
+                class="nav-item nav-link">
+                <i class="fa fa-cog"></i> Settings
+            </a>
+        </div>
+    </div>
     <div id="content">
         <div *ngIf="loaded">
             <ng-content></ng-content>

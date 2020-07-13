@@ -29,7 +29,7 @@ export class BotService {
   }
 
   getMembers(botId: string, guildId: string): Promise<any> {
-    return this.http.get(`${this.endpoint}/bots/${botId}/servers/${guildId}/members`).toPromise();
+    return this.http.get(`${this.endpoint}/${botId}/guilds/${guildId}/members`).toPromise();
   }
 
   getSavedBot(id: string): Promise<any> {
@@ -46,5 +46,9 @@ export class BotService {
 
   createBot(value: any): Promise<any> {
     return this.http.post(`${this.endpoint}?key=${this.key}`, value).toPromise();
+  }
+
+  getGuild(botId: string, guildId: string): Promise<any> {
+    return this.http.get(`${this.endpoint}/${botId}/guilds/${guildId}`).toPromise();
   }
 }

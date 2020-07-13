@@ -3,16 +3,16 @@
         <div class="bots px-2">
             <div class="user">
                 <div routerLink="/dashboard" class="bot-icon">
-                    <img [src]="user.displayAvatarURL" alt="{{ user.username }}">
+                    <img [src]="user.displayAvatarURL" [alt]="user.username">
                 </div>
                 <hr class="bot-seperator">
             </div>
-            <div *ngFor="let bot of bots" [routerLink]="['/servers/' + bot.id]"
+            <div *ngFor="let bot of bots" [routerLink]="['/bots/' + bot.id]"
                 class="bot-icon"
                 [matTooltip]="bot.name">
-                <img *ngIf="bot.iconURL"
-                    [src]="bot.iconURL" [alt]="bot.name">
-                <span *ngIf="!bot.iconURL"
+                <img *ngIf="bot.displayAvatarURL"
+                    [src]="bot.displayAvatarURL" [alt]="bot.name">
+                <span *ngIf="!bot.displayAvatarURL"
                     class="d-flex justify-content-center">{{ bot.nameAcronym }}</span>
             </div>
             <div routerLink="/add-bot" 

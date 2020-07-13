@@ -32,7 +32,7 @@ export class GeneralModuleComponent extends ModuleConfig implements OnInit {
         Validators.required, 
         Validators.maxLength(5) 
       ]),
-      ignoredChannelNames: new FormControl(general.ignoredChanneNamess ?? []),
+      ignoredChannelNames: new FormControl(general.ignoredChannelNames ?? []),
       autoRoleNames: new FormControl(general.autoRoleNames ?? [])
     });
     return formGroup;

@@ -16,10 +16,6 @@ export abstract class ModuleConfig implements OnDestroy {
     bot: any;
     originalsavedBot: any;
 
-    channels: any = [];
-    textChannels: any = [];
-    roles: any = [];
-
     get botId() { return this.route.snapshot.paramMap.get('id'); }
 
     private saveChanges$: Subscription;  
@@ -37,10 +33,6 @@ export abstract class ModuleConfig implements OnDestroy {
         const data = this.route.snapshot.data;
         
         this.bot = this.botService.bots.find(g => g.id === this.botId);
-
-        this.roles = data.roles;
-        this.channels = data.channels;
-        this.textChannels = data.channels.filter(c => c.type === 'text');
 
         this.savedBot = data.savedBot;
         this.originalsavedBot = JSON.parse(JSON.stringify(this.savedBot));
@@ -126,9 +118,5 @@ export abstract class ModuleConfig implements OnDestroy {
             array.splice(index, 1);
         
         this.openSaveChanges();
-    }
-
-    getChannel(id: string) {
-        return this.channels.find(c => c.id === id);
     }
 }

@@ -1,4 +1,4 @@
-<bot-sidebar [waitFor]="savedBot">
+<bot-sidebar>
     <div *ngIf="form" class="container">
         <form #f="ngForm" [formGroup]="form">
             <div>
@@ -14,12 +14,17 @@
                 <div class="col-lg-4 col-md-6">
                     <mat-form-field appearance="outline">
                         <mat-label>Ignored Role Names</mat-label>
-                        <mat-select multiple
-                            formControlName="ignoredRoleNames">
-                            <mat-option *ngFor="let role of roles" 
-                                [value]="role.id"
-                                [style.color]="'#' + role.color?.toString(16)">@{{ role.name }}</mat-option>
-                        </mat-select>
+                        <mat-chip-list #ignoredRoleNames aria-label="Name selection">
+                            <mat-chip *ngFor="let name of savedBot.autoMod.ignoredRoleNames" selectable
+                                    removable (removed)="remove(name, savedBot.autoMod.ignoredRoleNames)">
+                                {{ name }}
+                                <mat-icon matChipRemove>x</mat-icon>
+                            </mat-chip>
+                            <input placeholder="New name..."
+                                    [matChipInputFor]="ignoredRoleNames"
+                                    matChipInputAddOnBlur
+                                    (matChipInputTokenEnd)="add($event, savedBot.autoMod.ignoredRoleNames)">
+                        </mat-chip-list>
                     </mat-form-field>
                 </div>
                 <div class="col-lg-4 col-md-6">
@@ -40,7 +45,7 @@
             <hr>
             <h3>Level Roles</h3>
             <p class="desc">Reward users with roles when leveling up</p>
-            <div formArrayName="levelRoles" class="row">
+            <div formArrayName="levelRoleNames" class="row">
                 <div *ngFor="let i of levelRoleIndices" class="col-lg-6 col-sm-12">
                     <div [formGroupName]="i" class="rounded role d-flex justify-content-around row">
                         <div class="col-sm-6">

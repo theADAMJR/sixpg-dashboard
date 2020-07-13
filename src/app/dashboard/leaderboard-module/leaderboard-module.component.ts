@@ -9,17 +9,19 @@ import { BotService } from '../../services/bot.service';
 })
 export class LeaderboardModuleComponent implements OnInit {
   members: any;
-  bot: any = {};
+  guild: any = {};
 
   constructor(
-    private guildService: BotService,
+    private botService: BotService,
     private route: ActivatedRoute) {}
 
   async ngOnInit() {
     const botId = this.route.snapshot.paramMap.get('id');
     const guildId = this.route.snapshot.paramMap.get('guildId');
 
-    this.members = await this.guildService.getMembers(botId, guildId);
-    this.bot = await this.guildService.getPublicBot(botId);
+    this.members = await this.botService.getMembers(botId, guildId);
+    this.guild = await this.botService.getGuild(botId, guildId);
+    console.log(this.guild);
+    
   }
 }
