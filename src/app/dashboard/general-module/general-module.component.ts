@@ -27,7 +27,7 @@ export class GeneralModuleComponent extends ModuleConfig implements OnInit {
   }
 
   buildForm({ general }: any) {
-    const formGroup = new FormGroup({
+    return new FormGroup({
       prefix: new FormControl(general.prefix ?? '', [
         Validators.required, 
         Validators.maxLength(5) 
@@ -35,6 +35,5 @@ export class GeneralModuleComponent extends ModuleConfig implements OnInit {
       ignoredChannelNames: new FormControl(general.ignoredChannelNames ?? []),
       autoRoleNames: new FormControl(general.autoRoleNames ?? [])
     });
-    return formGroup;
   }
 }

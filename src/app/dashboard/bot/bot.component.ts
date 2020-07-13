@@ -19,9 +19,9 @@ export class BotComponent implements OnInit {
   async ngOnInit() {
     this.route.paramMap.subscribe(async(paramMap) => {
       const id = paramMap.get('id');
-      this.bot = this.guildService.getBot(id);
+      this.bot = await this.guildService.getPublicBot(id);
 
-      const { commands } = await this.guildService.getSavedLog(this.bot.id);
+      const { commands } = await this.guildService.getSavedLog(id);
       this.commands = commands;
     });
   }

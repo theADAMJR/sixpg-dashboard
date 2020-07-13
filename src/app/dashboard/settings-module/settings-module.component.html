@@ -9,6 +9,19 @@
                     <mat-checkbox formControlName="privateLeaderboard"></mat-checkbox>
                 </div>
             </div>
+            <hr>
+            <h3>Dangerous</h3>
+            <p class="desc">Dangerous options that do dangerous things.</p>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="p-2">Delete Bot Config</div>
+                    <button (click)="delete()"
+                        class="ml-4 bg-danger" mat-button><i class="fas fa-trash"></i> Delete</button>
+                </div>
+                <div class="col-lg-4 col-md-6">
+
+                </div>
+            </div>
         </form>
     </div>
 </bot-sidebar>

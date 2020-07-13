@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModuleConfig } from 'src/app/module-config';
 import { BotService } from 'src/app/services/bot.service';
 import { ActivatedRoute } from '@angular/router';
@@ -15,8 +15,16 @@ export class MusicModuleComponent extends ModuleConfig implements OnInit {
   minSearchLength = 2;
   moduleName = 'music';
 
+  playerForm = new FormGroup({ 
+    guildId: new FormControl('', Validators.required),
+    searchQuery: new FormControl('', Validators.required)
+  });
+
   get botId() { return this.route.snapshot.paramMap.get('id'); }
+  get guildId() { return this.playerForm.value.guildId; }
   get focused() { return document.activeElement.id === 'search'; }
+
+  guilds = [];
   
   constructor(
     public botService: BotService,
@@ -28,6 +36,8 @@ export class MusicModuleComponent extends ModuleConfig implements OnInit {
 
   async ngOnInit() {
     await super.init();
+
+    this.guilds = await this.botService.getGuilds(this.botId);
   }
   
   buildForm({ music }) {

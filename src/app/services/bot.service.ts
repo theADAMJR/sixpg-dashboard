@@ -48,7 +48,19 @@ export class BotService {
     return this.http.post(`${this.endpoint}?key=${this.key}`, value).toPromise();
   }
 
+  getGuilds(botId: string): Promise<any> {
+    return this.http.get(`${this.endpoint}/${botId}/guilds`).toPromise();
+  }
+
   getGuild(botId: string, guildId: string): Promise<any> {
     return this.http.get(`${this.endpoint}/${botId}/guilds/${guildId}`).toPromise();
+  }
+  
+  delete(id: string) {
+    return this.http.delete(`${this.endpoint}/${id}?key=${this.key}`).toPromise();
+  }
+
+  changeToken(id: string, newToken: string) {
+    return this.http.patch(`${this.endpoint}/${id}?key=${this.key}`, { newToken }).toPromise();
   }
 }

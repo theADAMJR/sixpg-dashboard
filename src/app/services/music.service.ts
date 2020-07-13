@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class MusicService {
-  endpoint = environment.endpoint + '/guilds';
+  endpoint = environment.endpoint + '/bots';
 
   private refreshList: number;
 
@@ -28,18 +28,18 @@ export class MusicService {
 
   constructor(private http: HttpClient) {}
 
-  async toggle(id: string) {
+  async toggle(botId: string, guildId: string) {
     try {
       (this.paused) 
-        ? await this.http.get(`${this.endpoint}/${id}/music/resume?key=${this.key}`).toPromise() as Promise<any>
-        : await this.http.get(`${this.endpoint}/${id}/music/pause?key=${this.key}`).toPromise() as Promise<any>;
+        ? await this.http.get(`${this.endpoint}/${botId}/guilds/${guildId}/music/resume?key=${this.key}`).toPromise() as Promise<any>
+        : await this.http.get(`${this.endpoint}/${botId}/guilds/${guildId}/music/pause?key=${this.key}`).toPromise() as Promise<any>;
       
       this._paused = !this.paused;
     } catch {}
   }
 
-  async updateList(id: string) {
-    this._list = await (this.http.get(`${this.endpoint}/${id}/music/list?key=${this.key}`)
+  async updateList(botId: string, guildId: string) {
+    this._list = await (this.http.get(`${this.endpoint}/${botId}/guilds/${guildId}/music/list?key=${this.key}`)
       .toPromise() as Promise<any>);
 
     if (this.list.length === 1) {
@@ -47,11 +47,11 @@ export class MusicService {
       this._current = 0;
 
       clearInterval(this.refreshList);
-      this.refreshList = window.setInterval(() => this.incrementPosition(id), 1 * 1000);
+      this.refreshList = window.setInterval(() => this.incrementPosition(botId, guildId), 1 * 1000);
     }
   }
 
-  private async incrementPosition(id: string) {
+  private async incrementPosition(botId: string, guildId: string) {
     if (this.paused) return;
 
     this._current++;
@@ -59,44 +59,44 @@ export class MusicService {
     this._max = this.list[0].duration / 1000;
     if (this._current >= this._max) {
       this._current = 0;
-      await this.updateList(id);
+      await this.updateList(botId, guildId);
     }
   }
 
-  async skip(id: string) {
-    await this.http.get(`${this.endpoint}/${id}/music/skip?key=${this.key}`).toPromise() as Promise<any>;
+  async skip(botId: string, guildId: string) {
+    await this.http.get(`${this.endpoint}/${botId}/guilds/${guildId}/music/skip?key=${this.key}`).toPromise() as Promise<any>;
     this.list.splice(0, 1);
     this._current = 0;
   }
 
-  async play(id: string, query: string) {
-    await this.http.get(`${this.endpoint}/${id}/music/play?key=${this.key}&query=${query}`).toPromise() as Promise<any>;
-    await this.updateList(id);
+  async play(botId: string, guildId: string, query: string) {
+    await this.http.get(`${this.endpoint}/${botId}/guilds/${guildId}/music/play?key=${this.key}&query=${query}`).toPromise() as Promise<any>;
+    await this.updateList(botId, guildId);
   }
 
-  async stop(id: string) {
-    await this.http.get(`${this.endpoint}/${id}/music/stop?key=${this.key}`).toPromise() as Promise<any>;
+  async stop(botId: string, guildId: string) {
+    await this.http.get(`${this.endpoint}/${botId}/guilds/${guildId}/music/stop?key=${this.key}`).toPromise() as Promise<any>;
     this._paused = true;
     this._list = [];
     this._current = 0;
   }
 
-  async removeTrack(id: string, position: number) {
-    await this.http.get(`${this.endpoint}/${id}/music/remove/${position}?key=${this.key}`).toPromise() as Promise<any>;    
-    await this.updateList(id);
+  async removeTrack(botId: string, guildId: string, position: number) {
+    await this.http.get(`${this.endpoint}/${botId}/guilds/${guildId}/music/remove/${position}?key=${this.key}`).toPromise() as Promise<any>;    
+    await this.updateList(botId, guildId);
   }
 
-  async seek(id: string, position: number) {
-    await this.http.get(`${this.endpoint}/${id}/music/seek/${position}?key=${this.key}`).toPromise() as Promise<any>;
+  async seek(botId: string, guildId: string, position: number) {
+    await this.http.get(`${this.endpoint}/${botId}/guilds/${guildId}/music/seek/${position}?key=${this.key}`).toPromise() as Promise<any>;
     this._current = position;
   }
 
-  setVolume(id: string, value: number) {
-    return this.http.get(`${this.endpoint}/${id}/music/set-volume/${value}?key=${this.key}`).toPromise() as Promise<any>;
+  setVolume(botId: string, guildId: string, value: number) {
+    return this.http.get(`${this.endpoint}/${botId}/guilds/${guildId}/music/set-volume/${value}?key=${this.key}`).toPromise() as Promise<any>;
   }
 
-  async shuffle(id: string) {
-    await this.http.get(`${this.endpoint}/${id}/music/shuffle?key=${this.key}`).toPromise() as Promise<any>;
-    await this.updateList(id);
+  async shuffle(botId: string, guildId: string) {
+    await this.http.get(`${this.endpoint}/${botId}/guilds/${guildId}/music/shuffle?key=${this.key}`).toPromise() as Promise<any>;
+    await this.updateList(botId, guildId);
   }
 }

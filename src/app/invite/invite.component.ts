@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class InviteComponent {
   form = new FormGroup({
-    token: new FormControl('', Validators.pattern(/^[A-Za-z\d]{24}\.[A-Za-z\d-]{6}\.[A-Za-z\d-_]{27}$/))
+    token: new FormControl('', Validators.pattern(/^[A-Za-z\d]{24}\.[A-Za-z\d-_]{6}\.[A-Za-z\d-_]{27}$/))
   });
 
   constructor(
@@ -20,7 +20,9 @@ export class InviteComponent {
   async submit() {
     if (this.form.touched && this.form.valid) {
       const { _id } = await this.botService.createBot(this.form.value);
-      this.router.navigate([`/bots/${_id}`]);
+
+      await this.botService.updateBots();
+      await this.router.navigate([`/bots/`, _id]);
     }
   }
 }
