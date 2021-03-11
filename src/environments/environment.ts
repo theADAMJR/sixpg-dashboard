@@ -7,7 +7,7 @@ export const environment = {
   endpoint: 'http://localhost:3000/api',
   discordInvite: 'https://discord.gg/24tycau',
   githubURL: 'https://github.com/theADAMJR/6PG',
-  version: 'v0.0.1a',
+  version: 'v0.0.2a',
   test: {
     botId: '685862664223850497'
   }
