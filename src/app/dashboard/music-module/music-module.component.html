@@ -6,10 +6,6 @@
         </div>
         <hr>
         <h3>Music Manager</h3>
-        <span>
-            <span class="badge badge-warning float-right"
-                matTooltip="This feature was added very recently. Please report all bugs you may find.">ALPHA</span>
-        </span>
         <p class="desc">Manage music without commands. You must be in a voice channel first.</p>        
         <div class="rounded manager row p-3">
             <div class="player col-lg-6 border-right border-dark">
@@ -50,7 +46,7 @@
                             min="0" [max]="service.list[0]?.duration / 1000" [value]="service.current" step="1"
                             tickInterval="1" thumbLabel
                             (change)="service.seek(botId, guildId, slider.value)"></mat-slider>
-                            <p class="pl-5">{{ service.current | durationString }} <span class="text-muted">/ {{ service.list[0]?.duration / 1000 | durationString }}</span></p>
+                            <p class="pl-5">{{ service.current | durationString }} <span class="text-muted">/ {{ service.list[0]?.duration.timestamp || '00:00' }}</span></p>
                     </div>
                     <div class="player-controls">
                         <!-- pause/resume -->
@@ -102,13 +98,13 @@
                     <!-- refresh -->
                     <button mat-button
                         (click)="service.updateList(botId, guildId)">
-                        <i class="fa fa-refresh" aria-hidden="true"></i>
+                        <i class="fas fa-sync" aria-hidden="true"></i>
                     </button>
                 </div>
                 <ul class="list-group border-bottom pb-2 border-muted">
                     <div *ngFor="let track of service.list; index as i"
                         class="track list-group-item">
-                        <span class="mt-2"><code>[{{ track.durationString }}]</code><a [href]="track.uri"> {{ track.title | truncated : 36 }}</a></span>
+                        <span class="mt-2"><code>[{{ track.duration.timestamp }}]</code><a [href]="track.uri"> {{ track.title | truncated : 36 }}</a></span>
                         <button class="float-right" color="warn" mat-button
                             (click)="service.removeTrack(botId, guildId, i)">x</button>
                     </div>
